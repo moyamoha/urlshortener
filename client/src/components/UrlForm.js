@@ -27,8 +27,10 @@ export default function UrlForm() {
 
 	const copyToClipboard = useCallback(() => {
 		if (!Navigator.clipboard || !shortened) {
+			console.log("ok");
 			return;
 		}
+		console.log(Navigator.clipboard);
 		Navigator.clipboard
 			.writeText(shortened)
 			.then(() => {
