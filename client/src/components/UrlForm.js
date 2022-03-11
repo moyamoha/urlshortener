@@ -5,7 +5,7 @@ import "./form.css";
 
 export default function UrlForm() {
 	const [url, setUrl] = useState("");
-	const [shortened, setShortened] = useState("OOOOOOOOO");
+	const [shortened, setShortened] = useState("");
 	const [copied, setCopied] = useState(false);
 
 	const handleSubmit = (e) => {
