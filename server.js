@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Url from "./models/url.js";
 import getRandomWord from "./middlewares/randomWord.js";
+import { checkBody, isTooShort } from "./middlewares/errorHandler.js";
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ mongoose
 	)
 	.catch((error) => console.log(error));
 
-app.post("/url", getRandomWord, async (req, res) => {
+app.post("/url", checkBody, isTooShort, getRandomWord, async (req, res) => {
 	if (!req.body || !req.body.url) {
 		res.status(400).json({ error: "Should provide a url" });
 		return;
