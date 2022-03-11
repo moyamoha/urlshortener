@@ -7,7 +7,7 @@ export default function UrlForm() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(url);
-		fetch("http://localhost:4000/url/", {
+		fetch("/url/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

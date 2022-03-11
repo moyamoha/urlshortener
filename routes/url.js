@@ -18,7 +18,7 @@ urlRouter.post("/", async (req, res) => {
 	try {
 		const savedUrl = await newUrlRecord.save();
 		res.status(201).json({
-			shortened: `http://localhost:4000/url/short/${savedUrl.identifier}/`,
+			shortened: `https://lyhenna.herokuapp.com/url/short/${savedUrl.identifier}/`,
 		});
 	} catch (err) {
 		res.status(500).json({ error: err.message });
