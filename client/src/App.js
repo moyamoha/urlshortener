@@ -4,7 +4,7 @@ function App() {
 	return (
 		<div className="App">
 			<div className="container d-flex flex-column">
-				<h1 my-4>Welcome to url Shortener</h1>
+				<h1 className="mt-4 mb-3">Welcome to url Shortener</h1>
 				<UrlForm></UrlForm>
 			</div>
 		</div>

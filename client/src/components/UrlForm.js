@@ -5,7 +5,7 @@ import "./form.css";
 
 export default function UrlForm() {
 	const [url, setUrl] = useState("");
-	const [shortened, setShortened] = useState("");
+	const [shortened, setShortened] = useState("OOOOOOOOO");
 	const [copied, setCopied] = useState(false);
 
 	const handleSubmit = (e) => {
@@ -26,23 +26,23 @@ export default function UrlForm() {
 	};
 
 	const copyToClipboard = useCallback(() => {
-		if (!Navigator.clipboard || !shortened) {
+		console.log(navigator);
+		if (!navigator.clipboard || !shortened) {
 			console.log("ok");
 			return;
 		}
-		console.log(Navigator.clipboard);
-		Navigator.clipboard
+		navigator.clipboard
 			.writeText(shortened)
 			.then(() => {
 				setCopied(true);
 			})
-			.then((err) => console.log(err));
+			.catch((err) => console.log(err));
 	}, [shortened]);
 
 	return (
 		<form className="url-form" onSubmit={handleSubmit}>
 			<div className="row">
-				<div class="form-group col-12 col-md-6 align-items-end">
+				<div className="form-group col-12 col-md-6 align-items-end">
 					<label htmlFor="original" className="mb-2">
 						Original Url
 					</label>
@@ -54,20 +54,20 @@ export default function UrlForm() {
 						onChange={(e) => setUrl(e.target.value)}
 					></textarea>
 				</div>
-				<div class="form-group col-12 col-md-6">
+				<div className="form-group col-12 col-md-6">
 					<label htmlFor="shortenedUrl" className="mb-2">
 						Shortened url
 					</label>
 					<div className="wrapper">
 						<textarea
-							class="form-control"
+							className="form-control"
 							id="shortenedUrl"
 							style={{ resize: "none" }}
 							disabled={true}
 							value={shortened}
 						></textarea>
 						{copied ? (
-							<TiTick></TiTick>
+							<TiTick className="copy-icon"></TiTick>
 						) : (
 							<BiCopy className="copy-icon" onClick={copyToClipboard}></BiCopy>
 						)}
@@ -75,7 +75,7 @@ export default function UrlForm() {
 				</div>
 			</div>
 			<div className="d-flex justify-content-center">
-				<button type="submit" class="btn btn-primary mt-3 w-25">
+				<button type="submit" className="btn btn-primary mt-3 w-25">
 					Go for it
 				</button>
 			</div>

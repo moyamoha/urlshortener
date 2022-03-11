@@ -5,6 +5,8 @@ textarea {
 	position: absolute;
 	top: 3%;
 	right: 1%;
+	width: 20px;
+	height: 20px;
 }
 
 .wrapper {
