@@ -25,7 +25,7 @@ mongoose
 	)
 	.catch((error) => console.log(error));
 
-app.post("/", getRandomWord, async (req, res) => {
+app.post("/url", getRandomWord, async (req, res) => {
 	if (!req.body || !req.body.url) {
 		res.status(400).json({ error: "Should provide a url" });
 		return;
@@ -38,15 +38,14 @@ app.post("/", getRandomWord, async (req, res) => {
 	try {
 		const savedUrl = await newUrlRecord.save();
 		res.status(201).json({
-			shortened: `https://lyhenna.herokuapp.com/${savedUrl.identifier}/`,
+			shortened: `https://lyhenna.herokuapp.com/short/${savedUrl.identifier}/`,
 		});
 	} catch (err) {
 		res.status(500).json({ error: err.message });
 	}
 });
 
-app.get("/[^]{2,}", async (req, res) => {
-	console.log(req.url.split("/")[1]);
+app.get("/short/*", async (req, res) => {
 	try {
 		const foundRoute = await Url.findOne({ identifier: req.url.split("/")[2] });
 		res.redirect(foundRoute.original);
