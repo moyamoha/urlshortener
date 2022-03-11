@@ -1,0 +1,17 @@
+textarea {
+	height: 200px;
+}
+.copy-icon {
+	position: absolute;
+	top: 3%;
+	right: 1%;
+}
+
+.wrapper {
+	position: relative;
+}
+
+.wrapper textarea {
+	width: 100%;
+	height: 200px;
+}
