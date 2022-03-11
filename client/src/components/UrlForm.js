@@ -21,6 +21,7 @@ export default function UrlForm() {
 			.then((res) => res.json())
 			.then((data) => {
 				setShortened(data.shortened);
+				setCopied(false);
 			})
 			.catch((err) => console.error(err));
 	};
