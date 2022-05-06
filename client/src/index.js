@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
 axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 ReactDOM.render(
 	<React.StrictMode>
