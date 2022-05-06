@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
+import axios from "axios";
 import { BiCopy } from "react-icons/bi";
 import { TiTick } from "react-icons/ti";
+
 import "./form.css";
 
 export default function UrlForm() {
@@ -8,22 +10,15 @@ export default function UrlForm() {
 	const [shortened, setShortened] = useState("");
 	const [copied, setCopied] = useState(false);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(url);
-		fetch("/url/", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ url: url }),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				setShortened(data.shortened);
-				setCopied(false);
-			})
-			.catch((err) => console.error(err));
+		try {
+			const response = await axios.post("/url/", { url: url });
+			setShortened(response.data.shortened);
+			setCopied(false);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const copyToClipboard = useCallback(() => {
