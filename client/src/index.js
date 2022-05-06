@@ -1,13 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
 
-axios.defaults.baseURL = "http://localhost:4000";
-axios.defaults.headers.post["Content-Type"] = "application/json";
+import "./index.css";
 
 ReactDOM.render(
 	<React.StrictMode>

@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import axios from "axios";
 import { BiCopy } from "react-icons/bi";
 import { TiTick } from "react-icons/ti";
 
@@ -10,19 +9,24 @@ export default function UrlForm() {
 	const [shortened, setShortened] = useState("");
 	const [copied, setCopied] = useState(false);
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		try {
-			const response = await axios.post("/url/", { url: url });
-			setShortened(response.data.shortened);
-			setCopied(false);
-		} catch (err) {
-			console.log(err);
-		}
+		fetch("/url/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ url: url }),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				setShortened(data.shortened);
+				setCopied(false);
+			})
+			.catch((err) => console.error(err));
 	};
 
 	const copyToClipboard = useCallback(() => {
-		console.log(navigator);
 		if (!navigator.clipboard || !shortened) {
 			console.log("ok");
 			return;
